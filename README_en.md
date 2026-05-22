@@ -24,10 +24,10 @@ This project is licensed under two distinct licenses:
 </div>
 ---
 
-> An AI-powered code remediation agent built on **LangGraph Supervisor**.
-> Automatically reads open SonarQube issues, generates precise fix patches via LLM + RAG,
-> validates fixes against SonarQube, and opens a GitHub Pull Request — fully automated.
-> Supports crash recovery via resumable thread checkpoints.
+1. An AI-powered code remediation agent built on **LangGraph Supervisor**.
+1. Automatically reads open SonarQube issues, generates precise fix patches via LLM + RAG,
+1. validates fixes against SonarQube, and opens a GitHub Pull Request — fully automated.
+1. Supports crash recovery via resumable thread checkpoints.
 
 ---
 
