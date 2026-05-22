@@ -26,7 +26,7 @@ This project is licensed under two distinct licenses:
 ---
 
 1. 基于 **LangGraph Supervisor** 模式的 AI 自动代码修复代理。
-1. 自动读取 SonarQube 检测到的 Java 代码问题，通过 LLM + RAG 生成精准修复补丁，
+1. 自动读取 SonarQube 检测到的 Java 代码问题，通过 LLM + RAG 生成精准修复补丁.
 1. 验证修复结果后，自动在 GitHub 上创建 Pull Request。
 1. 支持断点续跑。
 
