@@ -1,18 +1,19 @@
 <div align="right">
+
 # Sonarqube-remediation-ai-agent
 
-  <img src="https://img.shields.io/badge/Python-3.11+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python">
-  <img src="https://img.shields.io/badge/LangGraph-Supervisor-FF6B35?style=flat-square" alt="LangGraph">
-  <img src="https://img.shields.io/badge/LiteLLM-Unified%20LLM-7C3AED?style=flat-square" alt="LiteLLM">
-  <img src="https://img.shields.io/badge/pgvector-RAG-16A34A?style=flat-square&logo=postgresql&logoColor=white" alt="pgvector">
-  <img src="https://img.shields.io/badge/SonarQube-REST%20API-CB7A04?style=flat-square" alt="SonarQube">
-  <img src="https://img.shields.io/badge/GitHub-PyGithub-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub">
+<img src="https://img.shields.io/badge/Python-3.11+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python">
+<img src="https://img.shields.io/badge/LangGraph-Supervisor-FF6B35?style=flat-square" alt="LangGraph">
+<img src="https://img.shields.io/badge/LiteLLM-Unified%20LLM-7C3AED?style=flat-square" alt="LiteLLM">
+<img src="https://img.shields.io/badge/pgvector-RAG-16A34A?style=flat-square&logo=postgresql&logoColor=white" alt="pgvector">
+<img src="https://img.shields.io/badge/SonarQube-REST%20API-CB7A04?style=flat-square" alt="SonarQube">
+<img src="https://img.shields.io/badge/GitHub-PyGithub-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub">
 
 [简体中文](README.md) · English
 </div>
 
 <p align="center">
-An AI-powered code remediation agent built on <strong>LangGraph Supervisor</strong>.<br>
+> An AI-powered code remediation agent built on <strong>LangGraph Supervisor</strong>.<br>
 Automatically reads open SonarQube issues, generates precise fix patches via LLM + RAG,<br>
 validates fixes against SonarQube, and opens a GitHub Pull Request — fully automated.<br>
 Supports crash recovery via resumable thread checkpoints.
