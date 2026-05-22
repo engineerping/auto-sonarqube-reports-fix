@@ -22,6 +22,7 @@ This project is licensed under two distinct licenses:
 
 [简体中文](README.md) · English
 </div>
+
 ---
 
 1. An AI-powered code remediation agent built on **LangGraph Supervisor**.
