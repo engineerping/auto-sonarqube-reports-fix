@@ -8,7 +8,7 @@ This project is licensed under two distinct licenses:
 2. **Commercial Use**
    Requires a **paid commercial license**.
    See [COMMERCIAL-LICENSE.md](COMMERCIAL-LICENSE.md) for details.
-   
+
 <div align="center">
 
 # Sonarqube-remediation-ai-agent
@@ -21,15 +21,13 @@ This project is licensed under two distinct licenses:
 [![GitHub](https://img.shields.io/badge/GitHub-PyGithub-181717?logo=github&logoColor=white)](https://github.com/)
 
 [简体中文](README.md) · English
-
+</div>
 ---
 
 > An AI-powered code remediation agent built on **LangGraph Supervisor**.
 > Automatically reads open SonarQube issues, generates precise fix patches via LLM + RAG,
 > validates fixes against SonarQube, and opens a GitHub Pull Request — fully automated.
 > Supports crash recovery via resumable thread checkpoints.
-
-</div>
 
 ---
 

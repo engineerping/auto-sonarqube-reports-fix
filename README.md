@@ -21,6 +21,7 @@ This project is licensed under two distinct licenses:
 [![GitHub](https://img.shields.io/badge/GitHub-PyGithub-181717?logo=github&logoColor=white)](https://github.com/)
 
 [English](README_en.md) · 简体中文
+</div>
 
 ---
 
@@ -28,8 +29,6 @@ This project is licensed under two distinct licenses:
 > 自动读取 SonarQube 检测到的 Java 代码问题，通过 LLM + RAG 生成精准修复补丁，
 > 验证修复结果后，自动在 GitHub 上创建 Pull Request。
 > 支持断点续跑。
-
-</div>
 
 ---
 
