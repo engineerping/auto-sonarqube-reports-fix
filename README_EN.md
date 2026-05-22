@@ -1,3 +1,9 @@
+<p align="right">
+  🌐 &nbsp;<strong>语言 / Language：</strong>
+  <a href="README.md">中文</a> &nbsp;·&nbsp;
+  <a href="README_EN.md"><strong>English</strong></a>
+</p>
+
 # SonarQube AI Auto-Fix Agent
 
 <p align="center">
@@ -48,36 +54,47 @@ Supports crash recovery via resumable thread checkpoints.
 
 ## Architecture
 
-> **Interactive diagram**: [Open in browser](docs/architecture-diagram-resume.html)
+> Full interactive diagram (draw.io): [docs/architecture-diagram-resume.html](docs/architecture-diagram-resume.html)
 
-### Pipeline Overview
+```mermaid
+flowchart TD
+    CLI(["🖥️ CLI Trigger\npython main.py run --project &lt;key&gt; --branch main --github-repo org/repo\n--thread-id &lt;uuid&gt;  ← optional, resume a prior run"])
 
-```
-CLI (main.py)
-  └── LangGraph Supervisor (StateGraph + SqliteSaver)
-        ├── [1] IssueReader  ── SonarQube REST API → fetch open issues + rule metadata
-        ├── [2] Remediator   ── pgvector RAG + LiteLLM → generate unified diff patches
-        ├── [3] Validator    ── apply patches + trigger sonar-scanner → verify fixes
-        └── [4] GitHubAgent  ── push branch + PyGithub → open Pull Request
-```
+    subgraph SG["⚙️  LangGraph Supervisor Graph  ·  StateGraph · SqliteSaver · resumable · max_rounds retry loop"]
+        direction LR
+        A1["📋 ① IssueReader\nSonarQube REST · Subgraph\n· Fetch open issues\n· Fetch rule metadata\n· Fetch source context\n· Emit Issue[] → state"]
+        A2["🔧 ② Remediator\npgvector · LiteLLM · Subgraph\n· RAG: retrieve rules\n· LiteLLM: generate fix\n· Indent-preserving patch\n· Emit Fix[] → state"]
+        A3["☑️ ③ Validator\nsonar-scanner CLI · Subgraph\n· Apply unified diffs\n· Trigger sonar-scanner\n· Poll CE task status\n· Emit ValidationResult"]
+        A4["🐙 ④ GitHubAgent\nPyGithub · Subgraph\n· Create feature branch\n· Commit patched files\n· Open Pull Request\n· Emit pr_url → state"]
+        A1 --> A2 --> A3 --> A4
+        A3 -- "remaining > 0\n& round < N  ↩ Retry" --> A2
+    end
 
-### Supervisor Routing Logic
+    RAG[("🗄️ pgvector\nPostgreSQL + pgvector\n600+ Java rules\nOpenAI embed-3-small\ncosine top-k")]
+    LLM[("🤖 LiteLLM\nUnified LLM interface\nClaude / Azure GPT-4o\nvia LLM_MODEL env")]
+    SQLITE[("💾 SQLite\nLangGraph SqliteSaver\nAgentState per step\nruns/agent_runs.db")]
+    SONAR[["🔎 SonarQube Server\non-premise / private cloud\n/api/issues · /api/rules\n/api/sources · /api/ce/task"]]
+    GH[["🐙 GitHub\ntarget repository\nPyGithub API"]]
 
-```
-issues=[] & !fetched  →  IssueReader
-issues=[] &  fetched  →  END  (no issues found, done)
-fixes=[]              →  Remediator
-validation=None       →  Validator
-remaining>0 & round<N →  Remediator  (retry)
-otherwise             →  GitHubAgent
-```
+    CLI --> SG
+    A2 -.-> RAG & LLM
+    SG -. "checkpoint / step" .-> SQLITE
+    A1 & A3 -. "REST API" .-> SONAR
+    A4 -. "push branch + PR" .-> GH
 
-### Data Flow (LangGraph AgentState)
+    classDef agent fill:#e0f2f1,stroke:#4db6ac,color:#1a1a1a
+    classDef ragNode fill:#e8f5e9,stroke:#66bb6a,color:#1a1a1a
+    classDef llmNode fill:#ede7f6,stroke:#9575cd,color:#1a1a1a
+    classDef dbNode fill:#fff3e0,stroke:#ffb74d,color:#1a1a1a
+    classDef extNode fill:#fff8f1,stroke:#ffa726,color:#1a1a1a
+    classDef cliNode fill:#e8e8e8,stroke:#bdbdbd,color:#1a1a1a
 
-```
-START → router → IssueReader → router → Remediator ──┐
-                                                      │ up to max_rounds retries
-  END ← GitHubAgent ← router ← Validator  ← router ◄─┘
+    class A1,A2,A3,A4 agent
+    class RAG ragNode
+    class LLM llmNode
+    class SQLITE dbNode
+    class SONAR,GH extNode
+    class CLI cliNode
 ```
 
 ### Dual-Database Design
