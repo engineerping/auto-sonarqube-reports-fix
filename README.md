@@ -1,21 +1,17 @@
-<p align="right">
-  🌐 &nbsp;<strong>语言 / Language：</strong>
-  <a href="README.md"><strong>中文</strong></a> &nbsp;·&nbsp;
-  <a href="README_EN.md">English</a>
-</p>
+<div align="right">
+# Sonarqube-remediation-ai-agent
 
-# SonarQube AI Auto-Fix Agent
-
-<p align="center">
   <img src="https://img.shields.io/badge/Python-3.11+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/LangGraph-Supervisor-FF6B35?style=flat-square" alt="LangGraph">
   <img src="https://img.shields.io/badge/LiteLLM-Unified%20LLM-7C3AED?style=flat-square" alt="LiteLLM">
   <img src="https://img.shields.io/badge/pgvector-RAG-16A34A?style=flat-square&logo=postgresql&logoColor=white" alt="pgvector">
   <img src="https://img.shields.io/badge/SonarQube-REST%20API-CB7A04?style=flat-square" alt="SonarQube">
   <img src="https://img.shields.io/badge/GitHub-PyGithub-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub">
-</p>
 
-<p align="center">
+[English](README_en.md) · 简体中文
+</div>
+
+<p align="left">
 基于 <strong>LangGraph Supervisor</strong> 模式的 AI 自动代码修复代理。<br>
 自动读取 SonarQube 检测到的 Java 代码问题，通过 LLM + RAG 生成精准修复补丁，<br>
 验证修复结果后，自动在 GitHub 上创建 Pull Request。支持断点续跑。

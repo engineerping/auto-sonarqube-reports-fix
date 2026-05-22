@@ -1,19 +1,15 @@
-<p align="right">
-  🌐 &nbsp;<strong>语言 / Language：</strong>
-  <a href="README.md">中文</a> &nbsp;·&nbsp;
-  <a href="README_EN.md"><strong>English</strong></a>
-</p>
+<div align="right">
+# Sonarqube-remediation-ai-agent
 
-# SonarQube AI Auto-Fix Agent
-
-<p align="center">
   <img src="https://img.shields.io/badge/Python-3.11+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/LangGraph-Supervisor-FF6B35?style=flat-square" alt="LangGraph">
   <img src="https://img.shields.io/badge/LiteLLM-Unified%20LLM-7C3AED?style=flat-square" alt="LiteLLM">
   <img src="https://img.shields.io/badge/pgvector-RAG-16A34A?style=flat-square&logo=postgresql&logoColor=white" alt="pgvector">
   <img src="https://img.shields.io/badge/SonarQube-REST%20API-CB7A04?style=flat-square" alt="SonarQube">
   <img src="https://img.shields.io/badge/GitHub-PyGithub-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub">
-</p>
+
+[简体中文](README.md) · English
+</div>
 
 <p align="center">
 An AI-powered code remediation agent built on <strong>LangGraph Supervisor</strong>.<br>
